@@ -1,20 +1,34 @@
-function gerarSenha(tamanho = 12) {
-    const maiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const minusculas = "abcdefghijklmnopqrstuvwxyz";
-    const numeros = "0123456789";
-    const simbolos = "!@#$%&*?";
+function generatePassword() {
+ const length = document.getElementById("length").value;
 
-    const caracteres = maiusculas + minusculas + numeros + simbolos;
 
-    let senha = "";
+ const useUpper = document.getElementById("uppercase").checked;
+ const useNumbers = document.getElementById("numbers").checked;
+ const useSymbols = document.getElementById("symbols").checked;
 
-    for (let i = 0; i < tamanho; i++) {
-        const indice = Math.floor(Math.random() * caracteres.length);
-        senha += caracteres[indice];
-    }
 
-    return senha;
+ const lower = "abcdefghijklmnopqrstuvwxyz";
+ const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ const numbers = "0123456789";
+ const symbols = "!@#$%^&*()_+[]{}<>?";
+
+
+ let chars = lower;
+
+
+ if (useUpper) chars += upper;
+ if (useNumbers) chars += numbers;
+ if (useSymbols) chars += symbols;
+
+
+ let password = "";
+
+
+ for (let i = 0; i < length; i++) {
+   const randomIndex = Math.floor(Math.random() * chars.length);
+   password += chars[randomIndex];
+ }
+
+
+ document.getElementById("password").value = password;
 }
-
-// Exemplo:
-console.log("Senha gerada:", gerarSenha(16));
